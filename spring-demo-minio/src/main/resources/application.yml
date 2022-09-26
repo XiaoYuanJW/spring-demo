@@ -1,0 +1,37 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 13851176590++
+  servlet:
+    multipart:
+      enabled: true # 开启文件上传
+      max-file-size: 10MB # 限制文件上传大小为10M
+
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
+  type-aliases-package: com.example.demo.entity
+  configuration:
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+springfox:
+  documentation:
+    enabled: true
+
+# MINIO对象存储相关配置
+minio:
+  endpoint: http://1.117.34.49:9090 # MINIO所在地址
+  bucket: test  # 存储桶名称
+  accessKey: admin  # 访问key
+  secretKey: 123456@root # 访问密钥
