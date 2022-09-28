@@ -16,6 +16,7 @@
         <module>spring-demo-aop</module>
         <module>spring-demo-hutool</module>
         <module>spring-demo-minio</module>
+        <module>spring-demo-redis</module>
     </modules>
 
     <properties>
