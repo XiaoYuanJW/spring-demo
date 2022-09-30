@@ -17,6 +17,8 @@
         <module>spring-demo-hutool</module>
         <module>spring-demo-minio</module>
         <module>spring-demo-redis</module>
+        <module>spring-demo-redis-om</module>
+        <module>spring-demo-elasticsearch</module>
     </modules>
 
     <properties>
