@@ -19,6 +19,10 @@
         <module>spring-demo-redis</module>
         <module>spring-demo-redis-om</module>
         <module>spring-demo-elasticsearch</module>
+        <module>spring-demo-optional</module>
+        <module>spring-demo-rabbitmq</module>
+        <module>Consumer</module>
+        <module>spring-demo-rabbitmq/publisher</module>
     </modules>
 
     <properties>

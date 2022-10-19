@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.PmsBrandMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.PmsBrand">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="firstLetter" column="first_letter" jdbcType="VARCHAR"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="factoryStatus" column="factory_status" jdbcType="INTEGER"/>
+        <result property="showStatus" column="show_status" jdbcType="INTEGER"/>
+        <result property="productCount" column="product_count" jdbcType="INTEGER"/>
+        <result property="productCommentCount" column="product_comment_count" jdbcType="INTEGER"/>
+        <result property="logo" column="logo" jdbcType="VARCHAR"/>
+        <result property="bigPic" column="big_pic" jdbcType="VARCHAR"/>
+        <result property="brandStory" column="brand_story" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, first_letter, sort, factory_status, show_status, product_count, product_comment_count, logo, big_pic, brand_story
+    </sql>
+
+    <sql id="queryCondition">
+        <if test="id != null">and id = #{id,jdbcType=BIGINT}</if>
+        <if test="name != null">and name = #{name,jdbcType=VARCHAR}</if>
+        <if test="firstLetter != null">and first_letter = #{firstLetter,jdbcType=VARCHAR}</if>
+        <if test="sort != null">and sort = #{sort,jdbcType=INTEGER}</if>
+        <if test="factoryStatus != null">and factory_status = #{factoryStatus,jdbcType=INTEGER}</if>
+        <if test="showStatus != null">and show_status = #{showStatus,jdbcType=INTEGER}</if>
+        <if test="productCount != null">and product_count = #{productCount,jdbcType=INTEGER}</if>
+        <if test="productCommentCount != null">and product_comment_count = #{productCommentCount,jdbcType=INTEGER}</if>
+        <if test="logo != null">and logo = #{logo,jdbcType=VARCHAR}</if>
+        <if test="bigPic != null">and big_pic = #{bigPic,jdbcType=VARCHAR}</if>
+        <if test="brandStory != null">and brand_story = #{brandStory,jdbcType=VARCHAR}</if>
+    </sql>
+
+    <insert id="savePmsBrand" keyColumn="id" keyProperty="id" parameterType="com.example.demo.entity.PmsBrand" useGeneratedKeys="true">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO pms_brand (id, name, first_letter, sort, factory_status, show_status, product_count, product_comment_count, logo, big_pic, brand_story)
+        VALUES (
+            #{id,jdbcType=BIGINT},
+            #{name,jdbcType=VARCHAR},
+            #{firstLetter,jdbcType=VARCHAR},
+            #{sort,jdbcType=INTEGER},
+            #{factoryStatus,jdbcType=INTEGER},
+            #{showStatus,jdbcType=INTEGER},
+            #{productCount,jdbcType=INTEGER},
+            #{productCommentCount,jdbcType=INTEGER},
+            #{logo,jdbcType=VARCHAR},
+            #{bigPic,jdbcType=VARCHAR},
+            #{brandStory,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <select id="getPmsBrandById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM pms_brand
+        WHERE id = #{id,jdbcType=BIGINT} 
+    </select>
+
+    <select id="getPmsBrands" parameterType="com.example.demo.entity.PmsBrand" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM pms_brand
+        <where>
+            <include refid="queryCondition"></include>
+        </where>
+    </select>
+    
+    <delete id="deletePmsBrands" parameterType="java.util.List">
+        DELETE FROM pms_brand
+        <where>
+         id IN
+            <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </delete>
+
+    <update id="updatePmsBrand" parameterType="com.example.demo.entity.PmsBrand">
+        UPDATE pms_brand
+        <set>
+            <if test="name != null">name = #{name,jdbcType=VARCHAR},</if>
+            <if test="firstLetter != null">first_letter = #{firstLetter,jdbcType=VARCHAR},</if>
+            <if test="sort != null">sort = #{sort,jdbcType=INTEGER},</if>
+            <if test="factoryStatus != null">factory_status = #{factoryStatus,jdbcType=INTEGER},</if>
+            <if test="showStatus != null">show_status = #{showStatus,jdbcType=INTEGER},</if>
+            <if test="productCount != null">product_count = #{productCount,jdbcType=INTEGER},</if>
+            <if test="productCommentCount != null">product_comment_count = #{productCommentCount,jdbcType=INTEGER},</if>
+            <if test="logo != null">logo = #{logo,jdbcType=VARCHAR},</if>
+            <if test="bigPic != null">big_pic = #{bigPic,jdbcType=VARCHAR},</if>
+            <if test="brandStory != null">brand_story = #{brandStory,jdbcType=VARCHAR},</if>
+        </set>
+        WHERE id = #{id,jdbcType=BIGINT} 
+    </update>
+    
+    <select id="countPmsBrand" parameterType="com.example.demo.entity.PmsBrand" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM pms_brand
+        <where>
+            <include refid="queryCondition"></include>
+        </where>
+    </select>
+</mapper>
