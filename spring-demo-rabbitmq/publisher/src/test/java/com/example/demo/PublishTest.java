@@ -35,10 +35,10 @@ public class PublishTest {
         // 创建通道channel
         Channel channel = connection.createChannel();
         // 创建队列
-        channel.queueDeclare("basic queue", false, false, false, null);
+        channel.queueDeclare("basic.queue", false, false, false, null);
         // 发送消息
         String message = "hello rabbitmq";
-        channel.basicPublish("", "basic queue", null, message.getBytes());
+        channel.basicPublish("", "basic.queue", null, message.getBytes());
         log.info("发送消息成功：{}", message);
         // 关闭通道和连接
         channel.close();

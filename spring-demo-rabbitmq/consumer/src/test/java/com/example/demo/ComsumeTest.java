@@ -33,9 +33,9 @@ public class ComsumeTest {
         // 创建通道channel
         Channel channel = connection.createChannel();
         // 创建队列
-        channel.queueDeclare("basic queue", false, false, false, null);
+        channel.queueDeclare("basic.queue", false, false, false, null);
         // 订阅消息
-        channel.basicConsume("basic queue", true, new DefaultConsumer(channel) {
+        channel.basicConsume("basic.queue", true, new DefaultConsumer(channel) {
                @Override
                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                    // 处理消息（异步回调）

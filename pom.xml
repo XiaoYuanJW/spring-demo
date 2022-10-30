@@ -21,8 +21,9 @@
         <module>spring-demo-elasticsearch</module>
         <module>spring-demo-optional</module>
         <module>spring-demo-rabbitmq</module>
-        <module>Consumer</module>
         <module>spring-demo-rabbitmq/publisher</module>
+        <module>spring-demo-amqp</module>
+        <module>spring-demo-amqp</module>
     </modules>
 
     <properties>
