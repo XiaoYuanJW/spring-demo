@@ -1,7 +1,5 @@
 package com.example.demo.direct;
 
-import com.example.demo.fanout.FanoutReceiver;
-import com.example.demo.fanout.FanoutSender;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
@@ -17,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class DirectRabbitConfig {
     @Bean
     public DirectExchange directExchange() {
-        return new DirectExchange("direct.exchage");
+        return new DirectExchange("direct.exchange");
     }
 
     @Bean
@@ -31,32 +29,32 @@ public class DirectRabbitConfig {
     }
 
     @Bean
-    public Binding directBinding1a(DirectExchange directExchange, Queue directQueue1) {
-        return BindingBuilder.bind(directQueue1).to(directExchange).with("a");
+    public Binding directBindingRed1(DirectExchange directExchange, Queue directQueue1) {
+        return BindingBuilder.bind(directQueue1).to(directExchange).with("red");
     }
 
     @Bean
-    public Binding directBinding1c(DirectExchange directExchange, Queue directQueue1) {
-        return BindingBuilder.bind(directQueue1).to(directExchange).with("c");
+    public Binding directBindingBlack1(DirectExchange directExchange, Queue directQueue1) {
+        return BindingBuilder.bind(directQueue1).to(directExchange).with("black");
     }
 
     @Bean
-    public Binding directBinding2b(DirectExchange directExchange, Queue directQueue2) {
-        return BindingBuilder.bind(directQueue2).to(directExchange).with("b");
+    public Binding directBindingYellow2(DirectExchange directExchange, Queue directQueue2) {
+        return BindingBuilder.bind(directQueue2).to(directExchange).with("yellow");
     }
 
     @Bean
-    public Binding directBinding2c(DirectExchange directExchange, Queue directQueue2) {
-        return BindingBuilder.bind(directQueue2).to(directExchange).with("c");
+    public Binding directBindingBlack2(DirectExchange directExchange, Queue directQueue2) {
+        return BindingBuilder.bind(directQueue2).to(directExchange).with("black");
     }
 
     @Bean
-    public FanoutSender fanoutSender() {
-        return new FanoutSender();
+    public DirectSender directSender() {
+        return new DirectSender();
     }
 
     @Bean
-    public FanoutReceiver fanoutReceiver() {
-        return new FanoutReceiver();
+    public DirectReceiver directReceiver() {
+        return new DirectReceiver();
     }
 }

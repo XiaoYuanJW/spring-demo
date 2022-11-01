@@ -2,8 +2,10 @@ package com.example.demo.controller;
 
 import cn.hutool.core.thread.ThreadUtil;
 import com.example.demo.common.api.CommonResult;
+import com.example.demo.direct.DirectSender;
 import com.example.demo.fanout.FanoutSender;
 import com.example.demo.simple.SimpleSender;
+import com.example.demo.topic.TopicSender;
 import com.example.demo.work.WorkSender;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +29,10 @@ public class RabbitController {
     private WorkSender workSender;
     @Resource
     private FanoutSender fanoutSender;
+    @Resource
+    private DirectSender directSender;
+    @Resource
+    private TopicSender topicSender;
 
 
     @ApiOperation(value = "简单模式消息队列发送消息")
@@ -59,5 +65,23 @@ public class RabbitController {
         return CommonResult.success(null);
     }
 
+    @ApiOperation(value = "路由模式消息队列发送消息")
+    @GetMapping(value = "/direct")
+    public CommonResult direct() {
+        for (int i = 0; i < 10; i++) {
+            directSender.send(i);
+            ThreadUtil.sleep(1000);
+        }
+        return CommonResult.success(null);
+    }
 
+    @ApiOperation(value = "适配器模式消息队列发送消息")
+    @GetMapping(value = "/topic")
+    public CommonResult topic() {
+        for (int i = 0; i < 10; i++) {
+            topicSender.send(i);
+            ThreadUtil.sleep(1000);
+        }
+        return CommonResult.success(null);
+    }
 }

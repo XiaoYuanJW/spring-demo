@@ -8,9 +8,6 @@ spring:
     virtual-host: /
     username: guest
     password: guest
-    publisher-confirms: true # 消息发送到交换器确认
-    publisher-returns: true # 消息发送到队列确认
     listener:
       simple:
         prefetch: 1 # 允许预取消息次数
-
