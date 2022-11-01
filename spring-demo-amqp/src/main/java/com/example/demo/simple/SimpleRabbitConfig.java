@@ -16,6 +16,11 @@ public class SimpleRabbitConfig {
     }
 
     @Bean
+    public Queue objectQueue() {
+        return new Queue("object.queue");
+    }
+
+    @Bean
     public SimpleReceiver simpleReceiver (){
        return new SimpleReceiver();
     }

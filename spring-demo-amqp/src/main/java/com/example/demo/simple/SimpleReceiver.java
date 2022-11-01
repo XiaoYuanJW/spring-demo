@@ -6,6 +6,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Map;
+
 /**
  * 简单模式消息发送者
  * Created by YuanJW on 2022/10/25.
@@ -19,5 +21,10 @@ public class SimpleReceiver {
     @RabbitHandler
     public void receive(String message) throws InterruptedException {
         log.info("receive : {}", message);
+    }
+
+    @RabbitListener(queues = "object.queue")
+    public void receiveObject(Map<String, Object> map) {
+        log.info("receive : {}", map);
     }
 }

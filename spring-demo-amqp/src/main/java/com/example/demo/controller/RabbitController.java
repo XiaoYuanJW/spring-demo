@@ -84,4 +84,11 @@ public class RabbitController {
         }
         return CommonResult.success(null);
     }
+
+    @ApiOperation(value = "适配器模式消息队列发送消息")
+    @GetMapping(value = "/object")
+    public CommonResult object() {
+        simpleSender.sendObject();
+        return CommonResult.success(null);
+    }
 }
