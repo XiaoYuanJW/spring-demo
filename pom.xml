@@ -24,6 +24,7 @@
         <module>spring-demo-rabbitmq/publisher</module>
         <module>spring-demo-amqp</module>
         <module>spring-demo-amqp</module>
+        <module>spring-demo-elasticsearch-restclient</module>
     </modules>
 
     <properties>

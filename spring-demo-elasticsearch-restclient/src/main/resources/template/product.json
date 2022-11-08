@@ -1,0 +1,70 @@
+{
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "keyword"
+      },
+      "productSn": {
+        "type": "keyword"
+      },
+      "brandId": {
+        "type": "keyword",
+        "index": "false"
+      },
+      "brandName": {
+        "type": "keyword"
+      },
+      "productCategoryId": {
+        "type": "keyword",
+        "index": "false"
+      },
+      "productCategoryName": {
+        "type": "keyword"
+      },
+      "pic": {
+        "type": "keyword",
+        "index": "false"
+      },
+      "name": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "subTitle": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "keywords": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "price": {
+        "type": "double",
+        "index": "false"
+      },
+      "sale": {
+        "type": "integer",
+        "index": "false"
+      },
+      "newStatus": {
+        "type": "integer",
+        "index": "false"
+      },
+      "recommandStatus": {
+        "type": "integer",
+        "index": "false"
+      },
+      "stock": {
+        "type": "integer",
+        "index": "false"
+      },
+      "promotionType": {
+        "type": "integer",
+        "index": "false"
+      },
+      "sort": {
+        "type": "integer",
+        "index": "false"
+      }
+    }
+  }
+}
